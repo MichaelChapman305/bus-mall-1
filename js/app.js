@@ -5,17 +5,17 @@ var container = document.getElementById('container');
 var totalVotesOnPage = 0;
 var PRODUCTS = {};
 
-function Product(imgURL, name, HTMLid){
-  this.imgURL = imgURL;
+function Product(name, HTMLid, imgURL){
   this.name = name;
-  this.totalVotes = this.totalViews = 0;
   this.HTMLid = HTMLid;
-
+  this.imgURL = imgURL;
+  this.totalVotes = this.totalViews = 0;
+  
   PRODUCTS[this.HTMLid] = this;
 }
 
 Product.prototype.clickPercent = function(){
-  return this.totalViews / this.totalViews;
+  return this.totalVotes / this.totalViews;
 };
 
 Product.prototype.render = function(parentId){
