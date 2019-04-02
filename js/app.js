@@ -2,8 +2,8 @@
 
 
 var container = document.getElementById('container');
-var totalClicks = 0;
-var productArray = [];
+var totalVotesOnPage = 0;
+var PRODUCTS = {};
 
 function Product(imgURL, name, HTMLid){
   this.imgURL = imgURL;
@@ -11,7 +11,7 @@ function Product(imgURL, name, HTMLid){
   this.totalVotes = this.totalViews = 0;
   this.HTMLid = HTMLid;
 
-  productArray.push(this);
+  PRODUCTS[this.HTMLid] = this;
 }
 
 Product.prototype.clickPercent = function(){
@@ -29,11 +29,31 @@ Product.prototype.render = function(parentId){
   parent.appendChild(img);
 };
 
+function randomImageSelector(){
+
+}
+
+function addCurrentImages(event){
+
+}
+
+function displayResults(){
+
+}
+
 function handleClick(event) {
   if(event.target.className === 'product'){
-    console.log(event.target.className);
-        // totalClicks++;
+    totalVotesOnPage++;
+    PRODUCTS[event.target.id].totalVotes++;
+    //TODO if total clicks stop listening
+    if(totalVotesOnPage === 25){
+      //TODO remove eventlistener from container
+      displayResults();
+      return;
+    }
 
+    randomImageSelector();
+    addCurrentImages(event);
   }
 }
 
