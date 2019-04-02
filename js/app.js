@@ -12,7 +12,7 @@ function Product(name, HTMLid, imgURL){
   this.HTMLid = HTMLid;
   this.imgURL = imgURL;
   this.totalVotes = this.totalViews = 0;
-  
+
   PRODUCTS[this.HTMLid] = this;
 }
 
@@ -32,7 +32,20 @@ Product.prototype.render = function(parentId){
 };
 
 function randomImageSelector(){
-  var randomNum = Math.floor((Math.random() * productArray.length) + 1);
+  currentProducts = [];
+  // console.log(randomNum);
+  while(currentProducts[2] === undefined){
+    var randomNum = Math.floor((Math.random() * productArray.length) + 1);
+    if(randomNum === lastProducts[0] || randomNum === lastProducts[1] || randomNum === lastProducts[2]){
+      randomImageSelector();
+    }else if(randomNum === currentProducts[0] || randomNum === currentProducts[1] || randomNum === currentProducts[2]){
+      randomImageSelector();
+    }else{
+      currentProducts.push(randomNum);
+      console.log(randomNum);
+      console.log(currentProducts);
+    }
+  }
 }
 
 function addCurrentImages(event){
